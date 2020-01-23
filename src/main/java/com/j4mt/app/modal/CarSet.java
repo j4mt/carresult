@@ -40,8 +40,33 @@ public class CarSet {
     }
 //    • Within both the corporate and non-corporate groups, sort the cars into “mini”, “economy”, “compact” and “other” based on SIPP beginning with M, E, C respectively.
 
-//    public List<CarResult> par
+    public List<CarResult> partitionCorporateMini(){
 
+        return  partitionCorporate().stream()
+                .filter(this::isCorporateMini)
+                .collect(Collectors.toList());
+    }
+
+    public List<CarResult> partitionCorporateEconomy(){
+
+        return  partitionCorporate().stream()
+                .filter(this::isCorporateEconomy)
+                .collect(Collectors.toList());
+    }
+
+    public List<CarResult> partitionCorporateCompact(){
+
+        return  partitionCorporate().stream()
+                .filter(this::isCorporateCompact)
+                .collect(Collectors.toList());
+    }
+
+    public List<CarResult> partitionCorporateOther(){
+
+        return  partitionCorporate().stream()
+                .filter(this::isCorporateOther)
+                .collect(Collectors.toList());
+    }
 
     public List<CarResult> partitionNonCorporate() {
 
@@ -60,4 +85,21 @@ public class CarSet {
                 || s.getSupplierName().equals("SIXT")
                 || s.getSupplierName().equals("THRIFTY");
     }
+
+    private boolean isCorporateMini(CarResult s) {
+        return s.getSippCode().startsWith("M");
+    }
+
+    private boolean isCorporateEconomy(CarResult s) {
+        return s.getSippCode().startsWith("E");
+    }
+
+    private boolean isCorporateCompact(CarResult s) {
+        return s.getSippCode().startsWith("C");
+    }
+
+    private boolean isCorporateOther(CarResult s) {
+        return !isCorporateMini(s) || !isCorporateEconomy(s) || !isCorporateCompact(s) ;
+    }
+
 }

@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.j4mt</groupId>
-    <artifactId>car.reslut</artifactId>
+    <artifactId>car.result</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -33,7 +33,6 @@
 
     <build>
         <plugins>
-
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>

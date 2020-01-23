@@ -55,6 +55,70 @@ public class CarSetTest {
         assertThat(list.get(0).getSupplierName(), is("FIREFLY"));
     }
 
+    @Test
+    public void test_CarList_partition_corporate_mini() {
+
+        CarSet carSet = new CarSet();
+        carSet.addCarResult(carResult1);
+        carSet.addCarResult(carResult2);
+        carSet.addCarResult(carResult3);
+        carSet.addCarResult(carResult4);
+        carSet.addCarResult(carResult5);
+
+        List<CarResult> list = carSet.partitionCorporateMini();
+
+        assertThat(list.size(), is(1));
+        assertThat(list.get(0).getSupplierName(), is("HERTZ"));
+    }
+
+    @Test
+    public void test_CarList_partition_corporate_economy() {
+
+        CarSet carSet = new CarSet();
+        carSet.addCarResult(carResult1);
+        carSet.addCarResult(carResult2);
+        carSet.addCarResult(carResult3);
+        carSet.addCarResult(carResult4);
+        carSet.addCarResult(carResult7);
+
+        List<CarResult> list = carSet.partitionCorporateEconomy();
+
+        assertThat(list.size(), is(1));
+        assertThat(list.get(0).getSupplierName(), is("AVIS"));
+    }
+
+    @Test
+    public void test_CarList_partition_corporate_compact() {
+
+        CarSet carSet = new CarSet();
+        carSet.addCarResult(carResult1);
+        carSet.addCarResult(carResult2);
+        carSet.addCarResult(carResult3);
+        carSet.addCarResult(carResult4);
+        carSet.addCarResult(carResult9);
+
+        List<CarResult> list = carSet.partitionCorporateCompact();
+
+        assertThat(list.size(), is(1));
+        assertThat(list.get(0).getSupplierName(), is("ENTERPRISE"));
+    }
+
+    @Test
+    public void test_CarList_partition_corporate_other() {
+
+        CarSet carSet = new CarSet();
+        carSet.addCarResult(carResult1);
+        carSet.addCarResult(carResult2);
+        carSet.addCarResult(carResult3);
+        carSet.addCarResult(carResult4);
+        carSet.addCarResult(carResult9);
+
+        List<CarResult> list = carSet.partitionCorporateOther();
+
+        assertThat(list.size(), is(2));
+        assertThat(list.get(0).getSupplierName(), is("ENTERPRISE"));
+        assertThat(list.get(1).getSupplierName(), is("AVIS"));
+    }
 
     @Test
     public void test_CarList_partition_non_corporate() {
