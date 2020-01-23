@@ -28,7 +28,7 @@ public class CarSetTest {
     }
 
     @Test
-    public void test_CarList_add_duplicate_carResult() {
+    public void test_CarSet_add_duplicate_carResult() {
 
         CarSet carList = new CarSet();
 
@@ -39,7 +39,7 @@ public class CarSetTest {
     }
 
     @Test
-    public void test_CarList_partition_corporate() {
+    public void test_CarSet_partition_corporate() {
 
         CarSet carSet = new CarSet();
         carSet.addCarResult(carResult1);
@@ -56,7 +56,7 @@ public class CarSetTest {
     }
 
     @Test
-    public void test_CarList_partition_corporate_mini() {
+    public void test_CarSet_partition_corporate_mini() {
 
         CarSet carSet = new CarSet();
         carSet.addCarResult(carResult1);
@@ -72,7 +72,7 @@ public class CarSetTest {
     }
 
     @Test
-    public void test_CarList_partition_corporate_economy() {
+    public void test_CarSet_partition_corporate_economy() {
 
         CarSet carSet = new CarSet();
         carSet.addCarResult(carResult1);
@@ -88,7 +88,7 @@ public class CarSetTest {
     }
 
     @Test
-    public void test_CarList_partition_corporate_compact() {
+    public void test_CarSet_partition_corporate_compact() {
 
         CarSet carSet = new CarSet();
         carSet.addCarResult(carResult1);
@@ -104,7 +104,7 @@ public class CarSetTest {
     }
 
     @Test
-    public void test_CarList_partition_corporate_other() {
+    public void test_CarSet_partition_corporate_other() {
 
         CarSet carSet = new CarSet();
         carSet.addCarResult(carResult1);
@@ -118,6 +118,72 @@ public class CarSetTest {
         assertThat(list.size(), is(2));
         assertThat(list.get(0).getSupplierName(), is("ENTERPRISE"));
         assertThat(list.get(1).getSupplierName(), is("AVIS"));
+    }
+
+    @Test
+    void test_CarSet_partition_non_corporate_mini() {
+
+        CarSet carSet = new CarSet();
+        carSet.addCarResult(carResult1);
+        carSet.addCarResult(carResult2);
+        carSet.addCarResult(carResult3);
+        carSet.addCarResult(carResult4);
+        carSet.addCarResult(carResult5);
+
+        List<CarResult> list = carSet.partitionNonCorporateMini();
+
+        assertThat(list.size(), is(1));
+        assertThat(list.get(0).getSupplierName(), is("CENTAURO"));
+    }
+
+    @Test
+    void test_CarSet_partition_non_corporate_economy() {
+
+        CarSet carSet = new CarSet();
+        carSet.addCarResult(carResult1);
+        carSet.addCarResult(carResult2);
+        carSet.addCarResult(carResult3);
+        carSet.addCarResult(carResult4);
+        carSet.addCarResult(carResult7);
+
+        List<CarResult> list = carSet.partitionNonCorporateEconomy();
+
+        assertThat(list.size(), is(1));
+        assertThat(list.get(0).getSupplierName(), is("NIZA"));
+    }
+
+    @Test
+    void test_CarSet_partition_non_corporate_compact() {
+
+        CarSet carSet = new CarSet();
+        carSet.addCarResult(carResult1);
+        carSet.addCarResult(carResult2);
+        carSet.addCarResult(carResult3);
+        carSet.addCarResult(carResult4);
+        carSet.addCarResult(carResult9);
+
+        List<CarResult> list = carSet.partitionNonCorporateCompact();
+
+        assertThat(list.size(), is(1));
+        assertThat(list.get(0).getSupplierName(), is("GOLDCAR"));
+    }
+
+    @Test
+    void test_partition_non_corporate_other() {
+
+        CarSet carSet = new CarSet();
+        carSet.addCarResult(carResult1);
+        carSet.addCarResult(carResult2);
+        carSet.addCarResult(carResult3);
+        carSet.addCarResult(carResult4);
+        carSet.addCarResult(carResult9);
+
+        List<CarResult> list = carSet.partitionNonCorporateOther();
+
+        assertThat(list.size(), is(3));
+        assertThat(list.get(0).getSupplierName(), is("CENTAURO"));
+        assertThat(list.get(1).getSupplierName(), is("NIZA"));
+        assertThat(list.get(2).getSupplierName(), is("GOLDCAR"));
     }
 
     @Test

@@ -17,12 +17,6 @@ public class CarSet {
         return set.size();
     }
 
-    public Set<CarResult> getSet() {
-
-        return set;
-    }
-
-
     public List<CarResult> sort() {
 
         List<CarResult> list = new ArrayList<>();
@@ -38,41 +32,69 @@ public class CarSet {
                 .sorted(Comparator.comparingDouble(CarResult::getRentalCost))
                 .collect(Collectors.toList());
     }
-//    • Within both the corporate and non-corporate groups, sort the cars into “mini”, “economy”, “compact” and “other” based on SIPP beginning with M, E, C respectively.
-
-    public List<CarResult> partitionCorporateMini(){
-
-        return  partitionCorporate().stream()
-                .filter(this::isCorporateMini)
-                .collect(Collectors.toList());
-    }
-
-    public List<CarResult> partitionCorporateEconomy(){
-
-        return  partitionCorporate().stream()
-                .filter(this::isCorporateEconomy)
-                .collect(Collectors.toList());
-    }
-
-    public List<CarResult> partitionCorporateCompact(){
-
-        return  partitionCorporate().stream()
-                .filter(this::isCorporateCompact)
-                .collect(Collectors.toList());
-    }
-
-    public List<CarResult> partitionCorporateOther(){
-
-        return  partitionCorporate().stream()
-                .filter(this::isCorporateOther)
-                .collect(Collectors.toList());
-    }
 
     public List<CarResult> partitionNonCorporate() {
 
         return set.stream()
                 .filter(s -> !isCorporate(s))
                 .sorted(Comparator.comparingDouble(CarResult::getRentalCost))
+                .collect(Collectors.toList());
+    }
+//    • Within both the corporate and non-corporate groups, sort the cars into “mini”, “economy”, “compact” and “other” based on SIPP beginning with M, E, C respectively.
+
+    public List<CarResult> partitionCorporateMini(){
+
+        return  partitionCorporate().stream()
+                .filter(this::isMini)
+                .collect(Collectors.toList());
+    }
+
+    public List<CarResult> partitionCorporateEconomy(){
+
+        return  partitionCorporate().stream()
+                .filter(this::isEconomy)
+                .collect(Collectors.toList());
+    }
+
+    public List<CarResult> partitionCorporateCompact(){
+
+        return  partitionCorporate().stream()
+                .filter(this::isCompact)
+                .collect(Collectors.toList());
+    }
+
+    public List<CarResult> partitionCorporateOther(){
+
+        return  partitionCorporate().stream()
+                .filter(this::isOther)
+                .collect(Collectors.toList());
+    }
+
+    public List<CarResult> partitionNonCorporateMini(){
+
+        return  partitionNonCorporate().stream()
+                .filter(this::isMini)
+                .collect(Collectors.toList());
+    }
+
+    public List<CarResult> partitionNonCorporateEconomy(){
+
+        return  partitionNonCorporate().stream()
+                .filter(this::isEconomy)
+                .collect(Collectors.toList());
+    }
+
+    public List<CarResult> partitionNonCorporateCompact(){
+
+        return  partitionNonCorporate().stream()
+                .filter(this::isCompact)
+                .collect(Collectors.toList());
+    }
+
+    public List<CarResult> partitionNonCorporateOther(){
+
+        return  partitionNonCorporate().stream()
+                .filter(this::isOther)
                 .collect(Collectors.toList());
     }
 
@@ -86,20 +108,20 @@ public class CarSet {
                 || s.getSupplierName().equals("THRIFTY");
     }
 
-    private boolean isCorporateMini(CarResult s) {
+    private boolean isMini(CarResult s) {
         return s.getSippCode().startsWith("M");
     }
 
-    private boolean isCorporateEconomy(CarResult s) {
+    private boolean isEconomy(CarResult s) {
         return s.getSippCode().startsWith("E");
     }
 
-    private boolean isCorporateCompact(CarResult s) {
+    private boolean isCompact(CarResult s) {
         return s.getSippCode().startsWith("C");
     }
 
-    private boolean isCorporateOther(CarResult s) {
-        return !isCorporateMini(s) || !isCorporateEconomy(s) || !isCorporateCompact(s) ;
+    private boolean isOther(CarResult s) {
+        return !isMini(s) || !isEconomy(s) || !isCompact(s) ;
     }
 
 }
