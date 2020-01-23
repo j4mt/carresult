@@ -221,7 +221,6 @@ public class CarSetTest {
         CarSet carList = new CarSet();
         CarResultHelper.fillCarListData(carList);
 
-        Display display = new Display();
         List<CarResult> carResults = carList.sort();
 
         assertThat(carResults.get(0).getSippCode().startsWith("M"),is(true) );
