@@ -1,3 +1,5 @@
+
+
 Running the project tests
 
     mvn clean package
@@ -23,7 +25,7 @@ Description of problem;
  
  • Fuel Policy : Indicates if car is supplied full or empty and whether to be returned full or empty.
   
-2.0 Objective Using the supplied code as a starting point, the goal is to extend as follows: 
+2.0 (Done) Objective Using the supplied code as a starting point, the goal is to extend as follows: 
 
 • Remove any duplicates from the list 
 
@@ -51,5 +53,5 @@ Description of problem;
    GOLDCAR Citroen Berlingo CMMV 28.00 FULLFULL 
    RECORD Ford Galaxy FVAR 65.00 FULLEMPTY 
 
-3.0 Additionally If time allows, include an optional step to remove all FuelType.
+3.0 (Needs Impl) Additionally If time allows, include an optional step to remove all FuelType.
     FULLFULL cars that are priced above the median price within their groups. Hint: Google “Median Price”. 
