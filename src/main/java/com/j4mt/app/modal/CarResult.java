@@ -15,8 +15,6 @@ public class CarResult {
         FULLEMPTY
     }
 
-    ;
-
     public CarResult(String description, String supplierName, String sipp, double cost, FuelPolicy fuelPolicy) {
 
         this.description = description;
@@ -27,26 +25,32 @@ public class CarResult {
     }
 
     public String getDescription() {
+
         return this.description;
     }
 
     public String getSupplierName() {
+
         return this.supplierName;
     }
 
     public String getSippCode() {
+
         return this.sippCode;
     }
 
     public double getRentalCost() {
+
         return this.rentalCost;
     }
 
     public FuelPolicy getFuelPolicy() {
+
         return this.fuelPolicy;
     }
 
     public String toString() {
+
         return this.supplierName + " : " +
                 this.description + " : " +
                 this.sippCode + " : " +
@@ -56,6 +60,7 @@ public class CarResult {
 
     @Override
     public boolean equals(Object o) {
+
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CarResult carResult = (CarResult) o;
@@ -67,6 +72,7 @@ public class CarResult {
 
     @Override
     public int hashCode() {
+
         return Objects.hash(description, supplierName, sippCode, fuelPolicy);
     }
 }

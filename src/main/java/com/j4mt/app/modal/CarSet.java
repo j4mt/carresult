@@ -20,8 +20,16 @@ public class CarSet {
     public List<CarResult> sort() {
 
         List<CarResult> list = new ArrayList<>();
-        list.addAll(partitionCorporate());
-        list.addAll(partitionNonCorporate());
+
+        list.addAll(partitionCorporateMini());
+        list.addAll(partitionCorporateEconomy());
+        list.addAll(partitionCorporateCompact());
+        list.addAll(partitionCorporateOther());
+        list.addAll(partitionNonCorporateMini());
+        list.addAll(partitionNonCorporateEconomy());
+        list.addAll(partitionNonCorporateCompact());
+        list.addAll(partitionNonCorporateOther());
+
         return list;
     }
 
