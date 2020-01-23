@@ -1,3 +1,17 @@
+Running the project tests
+
+    mvn clean package
+        
+Running the jar
+    
+    from project root
+        java -jar target/car.result-1.0-SNAPSHOT.jar
+
+Code coverage
+
+    After test has been run : 
+        mvn jacoco:report
+
 Description of problem;
 
 1.0 Introduction The idea is to build on a simple Java application that currently lists
