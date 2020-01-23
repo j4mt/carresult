@@ -10,8 +10,9 @@ public class Runner {
 
         CarSet carList = new CarSet();
         CarResultHelper.fillCarListData(carList);
+
         Display display = new Display();
 
-        display.render(carList);
+        display.render(carList.sort());
     }
 }

@@ -14,6 +14,6 @@ public class CarResultHelperTest {
 
         CarResultHelper.fillCarListData(carList);
 
-        assertThat(carList.size(), is(260));
+        assertThat(carList.size(), is(239));
     }
 }

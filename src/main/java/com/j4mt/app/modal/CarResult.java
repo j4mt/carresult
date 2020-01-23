@@ -12,7 +12,10 @@ public class CarResult {
     public enum FuelPolicy {
 
         FULLFULL,
-        FULLEMPTY};
+        FULLEMPTY
+    }
+
+    ;
 
     public CarResult(String description, String supplierName, String sipp, double cost, FuelPolicy fuelPolicy) {
 
@@ -56,8 +59,7 @@ public class CarResult {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CarResult carResult = (CarResult) o;
-        return Double.compare(carResult.rentalCost, rentalCost) == 0 &&
-                Objects.equals(description, carResult.description) &&
+        return Objects.equals(description, carResult.description) &&
                 Objects.equals(supplierName, carResult.supplierName) &&
                 Objects.equals(sippCode, carResult.sippCode) &&
                 fuelPolicy == carResult.fuelPolicy;
@@ -65,6 +67,6 @@ public class CarResult {
 
     @Override
     public int hashCode() {
-        return Objects.hash(description, supplierName, sippCode, rentalCost, fuelPolicy);
+        return Objects.hash(description, supplierName, sippCode, fuelPolicy);
     }
 }
