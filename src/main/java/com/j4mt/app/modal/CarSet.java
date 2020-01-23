@@ -31,15 +31,19 @@ public class CarSet {
         return list;
     }
 
-    private List<CarResult> partitionCorporate() {
+    public List<CarResult> partitionCorporate() {
 
         return set.stream()
                 .filter(this::isCorporate)
                 .sorted(Comparator.comparingDouble(CarResult::getRentalCost))
                 .collect(Collectors.toList());
     }
+//    • Within both the corporate and non-corporate groups, sort the cars into “mini”, “economy”, “compact” and “other” based on SIPP beginning with M, E, C respectively.
 
-    private List<CarResult> partitionNonCorporate() {
+//    public List<CarResult> par
+
+
+    public List<CarResult> partitionNonCorporate() {
 
         return set.stream()
                 .filter(s -> !isCorporate(s))
