@@ -1,17 +1,23 @@
 package com.j4mt.app.modal;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+import com.j4mt.app.util.CarResultHelper;
+import com.j4mt.app.view.Display;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
+
 public class CarSetTest {
 
     CarResult carResult1, carResult2, carResult3, carResult4, carResult5, carResult6, carResult7, carResult8, carResult9;
-    @BeforeEach
+
+    @Before
     public void setUpCarSet(){
 
         //    • Within both the corporate and non-corporate groups, sort the cars into “mini”, “economy”, “compact” and “other” based on SIPP beginning with M, E, C respectively.
@@ -24,7 +30,6 @@ public class CarSetTest {
         carResult7 = new CarResult("Ford Focus Estate", "AVIS", "EDMR", 291.28d, CarResult.FuelPolicy.FULLFULL);
         carResult8 = new CarResult("Ford Focus Estate", "AVIS", "EDMR", 281.28d, CarResult.FuelPolicy.FULLFULL);
         carResult9 = new CarResult("Citroen Berlingo", "ENTERPRISE", "CMMV", 212.23d, CarResult.FuelPolicy.FULLFULL);
-
     }
 
     @Test
@@ -121,7 +126,7 @@ public class CarSetTest {
     }
 
     @Test
-    void test_CarSet_partition_non_corporate_mini() {
+    public void test_CarSet_partition_non_corporate_mini() {
 
         CarSet carSet = new CarSet();
         carSet.addCarResult(carResult1);
@@ -137,7 +142,7 @@ public class CarSetTest {
     }
 
     @Test
-    void test_CarSet_partition_non_corporate_economy() {
+    public void test_CarSet_partition_non_corporate_economy() {
 
         CarSet carSet = new CarSet();
         carSet.addCarResult(carResult1);
@@ -153,7 +158,7 @@ public class CarSetTest {
     }
 
     @Test
-    void test_CarSet_partition_non_corporate_compact() {
+    public void test_CarSet_partition_non_corporate_compact() {
 
         CarSet carSet = new CarSet();
         carSet.addCarResult(carResult1);
@@ -169,7 +174,7 @@ public class CarSetTest {
     }
 
     @Test
-    void test_partition_non_corporate_other() {
+    public void test_partition_non_corporate_other() {
 
         CarSet carSet = new CarSet();
         carSet.addCarResult(carResult1);
@@ -208,5 +213,20 @@ public class CarSetTest {
 
         assertThat(list.size(), is(3));
         assertThat(list.get(0).getSupplierName(), is("CENTAURO"));
+    }
+
+    @Test
+    public void test_CarList_sort() {
+
+        CarSet carList = new CarSet();
+        CarResultHelper.fillCarListData(carList);
+
+        Display display = new Display();
+        List<CarResult> carResults = carList.sort();
+
+        assertThat(carResults.get(0).getSippCode().startsWith("M"),is(true) );
+        assertThat(carResults.get(carResults.size()-1).getSippCode().startsWith("M"),is(false) );
+        assertThat(carResults.get(carResults.size()-1).getSippCode().startsWith("C"),is(false) );
+        assertThat(carResults.get(carResults.size()-1).getSippCode().startsWith("E"),is(false) );
     }
 }
