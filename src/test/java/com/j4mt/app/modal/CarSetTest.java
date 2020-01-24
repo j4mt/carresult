@@ -227,5 +227,8 @@ public class CarSetTest {
         assertThat(carResults.get(carResults.size()-1).getSippCode().startsWith("M"),is(false) );
         assertThat(carResults.get(carResults.size()-1).getSippCode().startsWith("C"),is(false) );
         assertThat(carResults.get(carResults.size()-1).getSippCode().startsWith("E"),is(false) );
+
+        //TODO: should be SORTED_LIST_SIZE not 371, needs review
+        assertThat(carResults.size(), is(371));
     }
 }
