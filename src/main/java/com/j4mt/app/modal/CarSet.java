@@ -129,7 +129,7 @@ public class CarSet {
     }
 
     private boolean isOther(CarResult s) {
-        return !isMini(s) || !isEconomy(s) || !isCompact(s) ;
+        return !isMini(s) && !isEconomy(s) && !isCompact(s) ;
     }
 
 }
