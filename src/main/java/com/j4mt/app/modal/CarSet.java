@@ -12,6 +12,10 @@ public class CarSet {
         set.add(carResult);
     }
 
+    public Set<CarResult> getSet() {
+        return set;
+    }
+
     public int size() {
 
         return set.size();
