@@ -75,4 +75,20 @@ public class CarResult {
 
         return Objects.hash(description, supplierName, sippCode, fuelPolicy);
     }
+
+    public boolean isMini() {
+        return getSippCode().startsWith("M");
+    }
+
+    public boolean isEconomy() {
+        return getSippCode().startsWith("E");
+    }
+
+    public boolean isCompact() {
+        return getSippCode().startsWith("C");
+    }
+
+    public boolean isOther() {
+        return !isMini() && !isEconomy() && !isCompact() ;
+    }
 }

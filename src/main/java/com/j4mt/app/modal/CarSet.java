@@ -53,56 +53,56 @@ public class CarSet {
     public List<CarResult> partitionCorporateMini(){
 
         return  partitionCorporate().stream()
-                .filter(this::isMini)
+                .filter(CarResult::isMini)
                 .collect(Collectors.toList());
     }
 
     public List<CarResult> partitionCorporateEconomy(){
 
         return  partitionCorporate().stream()
-                .filter(this::isEconomy)
+                .filter(CarResult::isEconomy)
                 .collect(Collectors.toList());
     }
 
     public List<CarResult> partitionCorporateCompact(){
 
         return  partitionCorporate().stream()
-                .filter(this::isCompact)
+                .filter(CarResult::isCompact)
                 .collect(Collectors.toList());
     }
 
     public List<CarResult> partitionCorporateOther(){
 
         return  partitionCorporate().stream()
-                .filter(this::isOther)
+                .filter(CarResult::isOther)
                 .collect(Collectors.toList());
     }
 
     public List<CarResult> partitionNonCorporateMini(){
 
         return  partitionNonCorporate().stream()
-                .filter(this::isMini)
+                .filter(CarResult::isMini)
                 .collect(Collectors.toList());
     }
 
     public List<CarResult> partitionNonCorporateEconomy(){
 
         return  partitionNonCorporate().stream()
-                .filter(this::isEconomy)
+                .filter(CarResult::isEconomy)
                 .collect(Collectors.toList());
     }
 
     public List<CarResult> partitionNonCorporateCompact(){
 
         return  partitionNonCorporate().stream()
-                .filter(this::isCompact)
+                .filter(CarResult::isCompact)
                 .collect(Collectors.toList());
     }
 
     public List<CarResult> partitionNonCorporateOther(){
 
         return  partitionNonCorporate().stream()
-                .filter(this::isOther)
+                .filter(CarResult::isOther)
                 .collect(Collectors.toList());
     }
 
@@ -115,21 +115,4 @@ public class CarSet {
                 || s.getSupplierName().equals("SIXT")
                 || s.getSupplierName().equals("THRIFTY");
     }
-
-    private boolean isMini(CarResult s) {
-        return s.getSippCode().startsWith("M");
-    }
-
-    private boolean isEconomy(CarResult s) {
-        return s.getSippCode().startsWith("E");
-    }
-
-    private boolean isCompact(CarResult s) {
-        return s.getSippCode().startsWith("C");
-    }
-
-    private boolean isOther(CarResult s) {
-        return !isMini(s) && !isEconomy(s) && !isCompact(s) ;
-    }
-
 }

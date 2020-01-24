@@ -6,16 +6,16 @@ import org.junit.Test;
 
 import java.util.List;
 
+import static com.j4mt.app.testUtils.TestConstants.SORTED_LIST_SIZE;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static com.j4mt.app.testUtils.TestConstants.SORTED_LIST_SIZE;
 
 public class CarSetTest {
 
     CarResult carResult1, carResult2, carResult3, carResult4, carResult5, carResult6, carResult7, carResult8, carResult9, carResult10;
 
     @Before
-    public void setUpCarSet(){
+    public void setUpCarSet() {
 
         //    • Within both the corporate and non-corporate groups, sort the cars into “mini”, “economy”, “compact” and “other” based on SIPP beginning with M, E, C respectively.
         carResult1 = new CarResult("Volkswagen Polo", "NIZA", "EDMR", 12.81d, CarResult.FuelPolicy.FULLEMPTY);
@@ -118,9 +118,11 @@ public class CarSetTest {
 
         List<CarResult> list = carSet.partitionCorporateOther();
 
-        assertThat(list.size(), is(2));
-        assertThat(list.get(0).getSupplierName(), is("ENTERPRISE"));
-        assertThat(list.get(1).getSupplierName(), is("AVIS"));
+        assertThat(list.size(), is(1));
+        assertThat(list.get(0).getSupplierName(), is("AVIS"));
+        assertThat(list.get(0).getSippCode().startsWith("M"), is(false));
+        assertThat(list.get(0).getSippCode().startsWith("C"), is(false));
+        assertThat(list.get(0).getSippCode().startsWith("E"), is(false));
     }
 
     @Test
@@ -206,6 +208,7 @@ public class CarSetTest {
 
         assertThat(list.size(), is(3));
         assertThat(list.get(0).getSupplierName(), is("CENTAURO"));
+        assertThat(list.get(0).getDescription(), is("Peugeot 107"));
     }
 
     @Test
@@ -216,12 +219,12 @@ public class CarSetTest {
 
         List<CarResult> carResults = carList.sort();
 
-        System.out.println("Car List Size : " +carList.size());
+        System.out.println("Car List Size : " + carList.size());
 
-        assertThat(carResults.get(0).getSippCode().startsWith("M"),is(true) );
-        assertThat(carResults.get(carResults.size()-1).getSippCode().startsWith("M"),is(false) );
-        assertThat(carResults.get(carResults.size()-1).getSippCode().startsWith("C"),is(false) );
-        assertThat(carResults.get(carResults.size()-1).getSippCode().startsWith("E"),is(false) );
+        assertThat(carResults.get(0).getSippCode().startsWith("M"), is(true));
+        assertThat(carResults.get(carResults.size() - 1).getSippCode().startsWith("M"), is(false));
+        assertThat(carResults.get(carResults.size() - 1).getSippCode().startsWith("C"), is(false));
+        assertThat(carResults.get(carResults.size() - 1).getSippCode().startsWith("E"), is(false));
 
         assertThat(carResults.size(), is(SORTED_LIST_SIZE));
     }

@@ -11,10 +11,11 @@ public class CarResultHelperTest {
 
     @Test
     public void test_CarResultHelper_filldata(){
+
         CarSet carList = new CarSet();
 
         CarResultHelper.fillCarListData(carList);
 
-        assertThat(carList.size(), is(SORTED_LIST_SIZE ));
+        assertThat(carList.size(), is(SORTED_LIST_SIZE));
     }
 }
