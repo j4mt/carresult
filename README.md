@@ -1,4 +1,4 @@
-![](https://github.com/j4mt/carresult/blob/master/.github/workflows/badge.svg)
+![](https://github.com/j4mt/carresult/blob/master/.github/workflows/Java%20CI/badge.svg)
 
 Description of problem;
 
