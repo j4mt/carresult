@@ -1,5 +1,7 @@
 package com.j4mt.app.modal;
 
+import com.j4mt.app.util.CarResultHelper;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -25,19 +27,19 @@ public class CarSet {
 
         List<CarResult> list = new ArrayList<>();
 
-        list.addAll(partitionCorporateMini());
-        list.addAll(partitionCorporateEconomy());
-        list.addAll(partitionCorporateCompact());
-        list.addAll(partitionCorporateOther());
-        list.addAll(partitionNonCorporateMini());
-        list.addAll(partitionNonCorporateEconomy());
-        list.addAll(partitionNonCorporateCompact());
-        list.addAll(partitionNonCorporateOther());
+        list.addAll(filterCorporateMini());
+        list.addAll(filterCorporateEconomy());
+        list.addAll(filterCorporateCompact());
+        list.addAll(filterCorporateOther());
+        list.addAll(filterNonCorporateMini());
+        list.addAll(filterNonCorporateEconomy());
+        list.addAll(filterNonCorporateCompact());
+        list.addAll(filterNonCorporateOther());
 
         return list;
     }
 
-    public List<CarResult> partitionCorporate() {
+    public List<CarResult> filterCorporate() {
 
         return set.stream()
                 .filter(this::isCorporate)
@@ -45,7 +47,7 @@ public class CarSet {
                 .collect(Collectors.toList());
     }
 
-    public List<CarResult> partitionNonCorporate() {
+    public List<CarResult> filterNonCorporate() {
 
         return set.stream()
                 .filter(s -> !isCorporate(s))
@@ -54,61 +56,63 @@ public class CarSet {
     }
 //    • Within both the corporate and non-corporate groups, sort the cars into “mini”, “economy”, “compact” and “other” based on SIPP beginning with M, E, C respectively.
 
-    public List<CarResult> partitionCorporateMini(){
+    public List<CarResult> filterCorporateMini(){
 
-        return  partitionCorporate().stream()
+        return  filterCorporate().stream()
                 .filter(CarResult::isMini)
                 .collect(Collectors.toList());
     }
 
-    public List<CarResult> partitionCorporateEconomy(){
+    public List<CarResult> filterCorporateEconomy(){
 
-        return  partitionCorporate().stream()
+        return  filterCorporate().stream()
                 .filter(CarResult::isEconomy)
                 .collect(Collectors.toList());
     }
 
-    public List<CarResult> partitionCorporateCompact(){
+    public List<CarResult> filterCorporateCompact(){
 
-        return  partitionCorporate().stream()
+        return  filterCorporate().stream()
                 .filter(CarResult::isCompact)
                 .collect(Collectors.toList());
     }
 
-    public List<CarResult> partitionCorporateOther(){
+    public List<CarResult> filterCorporateOther(){
 
-        return  partitionCorporate().stream()
+        return  filterCorporate().stream()
                 .filter(CarResult::isOther)
                 .collect(Collectors.toList());
     }
 
-    public List<CarResult> partitionNonCorporateMini(){
+    public List<CarResult> filterNonCorporateMini(){
 
-        return  partitionNonCorporate().stream()
+        return  filterNonCorporate().stream()
                 .filter(CarResult::isMini)
                 .collect(Collectors.toList());
     }
 
-    public List<CarResult> partitionNonCorporateEconomy(){
+    public List<CarResult> filterNonCorporateEconomy(){
 
-        return  partitionNonCorporate().stream()
+        return  filterNonCorporate().stream()
                 .filter(CarResult::isEconomy)
                 .collect(Collectors.toList());
     }
 
-    public List<CarResult> partitionNonCorporateCompact(){
+    public List<CarResult> filterNonCorporateCompact(){
 
-        return  partitionNonCorporate().stream()
+        return  filterNonCorporate().stream()
                 .filter(CarResult::isCompact)
                 .collect(Collectors.toList());
     }
 
-    public List<CarResult> partitionNonCorporateOther(){
+    public List<CarResult> filterNonCorporateOther(){
 
-        return  partitionNonCorporate().stream()
+        return  filterNonCorporate().stream()
                 .filter(CarResult::isOther)
                 .collect(Collectors.toList());
     }
+
+
 
     private boolean isCorporate(CarResult s) {
         return s.getSupplierName().equals("AVIS")

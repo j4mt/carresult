@@ -3,7 +3,34 @@ package com.j4mt.app.util;
 import com.j4mt.app.modal.CarSet;
 import com.j4mt.app.modal.CarResult;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class CarResultHelper {
+
+    public static List<CarResult> filterAboveMedionFPFullFull(List<CarResult> list){
+
+        return  list.stream()
+                .filter(c -> c.getRentalCost() < CarResultHelper.calculateMedionRentalCost(list) &&
+                        c.getFuelPolicy() != CarResult.FuelPolicy.FULLFULL)
+                .collect(Collectors.toList());
+    }
+
+    public static Double calculateMedionRentalCost(List<CarResult> carResultList){
+        Double medionRentalCost = 0.0;
+        List<Double> rentalCostList = carResultList.stream().map(CarResult::getRentalCost).collect(Collectors.toList());
+
+        Collections.sort(rentalCostList);
+
+         if(rentalCostList.size() % 2 == 0){
+             medionRentalCost = rentalCostList.get(rentalCostList.size() / 2) + rentalCostList.get(rentalCostList.size() / 2 - 1) / 2;
+         }else{
+             medionRentalCost = rentalCostList.get(rentalCostList.size() / 2);
+         }
+
+        return medionRentalCost;
+    }
 
     public static void fillCarListData(CarSet carList){
 

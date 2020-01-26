@@ -53,5 +53,5 @@ Description of problem;
    GOLDCAR Citroen Berlingo CMMV 28.00 FULLFULL 
    RECORD Ford Galaxy FVAR 65.00 FULLEMPTY 
 
-3.0 (Needs Impl) Additionally If time allows, include an optional step to remove all FuelType.
+3.0 Additionally If time allows, include an optional step to remove all FuelType.
     FULLFULL cars that are priced above the median price within their groups. Hint: Google “Median Price”. 

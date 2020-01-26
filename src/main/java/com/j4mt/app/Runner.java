@@ -21,6 +21,9 @@ public class Runner {
         System.out.println("\n\nSet Size: = " + sortedList.size() + ".\n\n");
 
         display.render(sortedList);
-        System.out.println("\n\nList Size after Sort: = " + sortedList.size());
+        System.out.println("\n\nList Size after Sort: = " + sortedList.size() + ".\n\n");
+
+        display.render(CarResultHelper.filterAboveMedionFPFullFull(sortedList));
+        System.out.println("\n\nList after medion rental cost fuel Policy Full Full: = " + sortedList.size() + ".\n\n");
     }
 }
