@@ -1,4 +1,4 @@
-https://github.com/j4mt/carresult/blob/master/.github/workflows/maven.yml
+![](https://github.com/j4mt/carresult/blob/master/.github/workflows/badge.svg)
 
 Description of problem;
 
