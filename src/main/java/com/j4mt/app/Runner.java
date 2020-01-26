@@ -5,6 +5,7 @@ import com.j4mt.app.modal.CarSet;
 import com.j4mt.app.util.CarResultHelper;
 import com.j4mt.app.view.Display;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Runner {
@@ -23,7 +24,9 @@ public class Runner {
         display.render(sortedList);
         System.out.println("\n\nList Size after Sort: = " + sortedList.size() + ".\n\n");
 
-        display.render(CarResultHelper.filterAboveMedionFPFullFull(sortedList));
-        System.out.println("\n\nList after medion rental cost fuel Policy Full Full: = " + sortedList.size() + ".\n\n");
+        List<CarResult> carResultsFilteredOnMedionRentalCostFuelPolicyFF = new ArrayList<>();
+        carResultsFilteredOnMedionRentalCostFuelPolicyFF = CarResultHelper.filterAboveMedionFPFullFull(sortedList);
+        display.render(carResultsFilteredOnMedionRentalCostFuelPolicyFF);
+        System.out.println("\n\nList after medion rental cost fuel Policy Full Full: Size = " + carResultsFilteredOnMedionRentalCostFuelPolicyFF.size()+ ".\n\n");
     }
 }
