@@ -38,7 +38,7 @@ public class CarSetTest extends BaseTest {
         List<CarResult> list = carSet.filterCorporate();
 
         assertThat(list.size(), is(3));
-        assertThat(list.get(0).getSupplierName(), is("HERTZ"));
+        assertThat(list.get(0).getSupplierName(), is("AVIS"));
     }
 
     @Test
@@ -190,8 +190,8 @@ public class CarSetTest extends BaseTest {
         List<CarResult> list = carSet.filterNonCorporate();
 
         assertThat(list.size(), is(3));
-        assertThat(list.get(0).getSupplierName(), is("NIZA"));
-        assertThat(list.get(0).getDescription(), is("Volkswagen Polo"));
+        assertThat(list.get(0).getSupplierName(), is("CENTAURO"));
+        assertThat(list.get(0).getDescription(), is("Peugeot 107"));
     }
 
     @Test
