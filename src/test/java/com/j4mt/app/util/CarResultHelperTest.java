@@ -1,8 +1,8 @@
 package com.j4mt.app.util;
 
 import com.j4mt.app.BaseTest;
-import com.j4mt.app.modal.CarResult;
-import com.j4mt.app.modal.CarSet;
+import com.j4mt.app.model.CarResult;
+import com.j4mt.app.model.CarSet;
 import com.j4mt.app.view.Display;
 import org.junit.Test;
 
@@ -38,7 +38,7 @@ public class CarResultHelperTest extends BaseTest {
         Display display = new Display();
         display.render(carSet);
 
-        assertThat(CarResultHelper.calculateMedionRentalCost(carResultList), is(carResult5.getRentalCost()));
+        assertThat(CarResultHelper.calculateMedianRentalCost(carResultList), is(carResult5.getRentalCost()));
     }
 
 }

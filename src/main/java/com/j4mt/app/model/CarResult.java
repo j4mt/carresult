@@ -1,4 +1,4 @@
-package com.j4mt.app.modal;
+package com.j4mt.app.model;
 
 import java.util.Objects;
 
@@ -90,5 +90,15 @@ public class CarResult {
 
     public boolean isOther() {
         return !isMini() && !isEconomy() && !isCompact() ;
+    }
+
+    public boolean isCorporate() {
+        return getSupplierName().equals("AVIS")
+                || getSupplierName().equals("BUDGET")
+                || getSupplierName().equals("ENTERPRISE")
+                || getSupplierName().equals("FIREFLY")
+                || getSupplierName().equals("HERTZ")
+                || getSupplierName().equals("SIXT")
+                || getSupplierName().equals("THRIFTY");
     }
 }

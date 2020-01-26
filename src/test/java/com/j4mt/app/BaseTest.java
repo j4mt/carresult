@@ -1,16 +1,15 @@
 package com.j4mt.app;
 
-import com.j4mt.app.modal.CarResult;
+import com.j4mt.app.model.CarResult;
 import org.junit.Before;
 
 public class BaseTest {
 
-protected CarResult carResult1, carResult2, carResult3, carResult4, carResult5, carResult6, carResult7, carResult8, carResult9, carResult10;
+    protected CarResult carResult1, carResult2, carResult3, carResult4, carResult5, carResult6, carResult7, carResult8, carResult9, carResult10;
 
     @Before
     public void setUpCarSet() {
 
-        //    • Within both the corporate and non-corporate groups, sort the cars into “mini”, “economy”, “compact” and “other” based on SIPP beginning with M, E, C respectively.
         carResult1 = new CarResult("Volkswagen Polo", "NIZA", "EDMR", 12.81d, CarResult.FuelPolicy.FULLEMPTY);
         carResult2 = new CarResult("Peugeot 107", "CENTAURO", "MCMR", 9.78d, CarResult.FuelPolicy.FULLEMPTY);
         carResult3 = new CarResult("Toyota Avensis", "GOLDCAR", "CWMR", 301.95d, CarResult.FuelPolicy.FULLEMPTY);

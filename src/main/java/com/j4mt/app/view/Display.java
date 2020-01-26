@@ -1,12 +1,12 @@
 package com.j4mt.app.view;
 
-import com.j4mt.app.modal.CarSet;
-import com.j4mt.app.modal.CarResult;
+import com.j4mt.app.model.CarSet;
+import com.j4mt.app.model.CarResult;
 
 import java.util.List;
-import java.util.Set;
 
 public class Display {
+
     public void render(CarSet carSet) {
        carSet.getSet().forEach(System.out::println);
     }

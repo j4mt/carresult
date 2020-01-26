@@ -1,11 +1,9 @@
-package com.j4mt.app.modal;
+package com.j4mt.app.model;
 
 import com.j4mt.app.BaseTest;
 import com.j4mt.app.util.CarResultHelper;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import static com.j4mt.app.testUtils.TestConstants.SORTED_LIST_SIZE;
@@ -40,7 +38,7 @@ public class CarSetTest extends BaseTest {
         List<CarResult> list = carSet.filterCorporate();
 
         assertThat(list.size(), is(3));
-        assertThat(list.get(0).getSupplierName(), is("FIREFLY"));
+        assertThat(list.get(0).getSupplierName(), is("HERTZ"));
     }
 
     @Test
@@ -53,7 +51,7 @@ public class CarSetTest extends BaseTest {
         carSet.addCarResult(carResult4);
         carSet.addCarResult(carResult5);
 
-        List<CarResult> list = carSet.filterCorporateMini();
+        List<CarResult> list = carSet.filterMini(carSet.filterCorporate());
 
         assertThat(list.size(), is(1));
         assertThat(list.get(0).getSupplierName(), is("HERTZ"));
@@ -69,7 +67,7 @@ public class CarSetTest extends BaseTest {
         carSet.addCarResult(carResult4);
         carSet.addCarResult(carResult7);
 
-        List<CarResult> list = carSet.filterCorporateEconomy();
+        List<CarResult> list = carSet.filterEconomy(carSet.filterCorporate());
 
         assertThat(list.size(), is(1));
         assertThat(list.get(0).getSupplierName(), is("AVIS"));
@@ -85,7 +83,7 @@ public class CarSetTest extends BaseTest {
         carSet.addCarResult(carResult4);
         carSet.addCarResult(carResult9);
 
-        List<CarResult> list = carSet.filterCorporateCompact();
+        List<CarResult> list = carSet.filterCompact(carSet.filterCorporate());
 
         assertThat(list.size(), is(1));
         assertThat(list.get(0).getSupplierName(), is("ENTERPRISE"));
@@ -101,7 +99,7 @@ public class CarSetTest extends BaseTest {
         carSet.addCarResult(carResult4);
         carSet.addCarResult(carResult9);
 
-        List<CarResult> list = carSet.filterCorporateOther();
+        List<CarResult> list = carSet.filterOther(carSet.filterCorporate());
 
         assertThat(list.size(), is(1));
         assertThat(list.get(0).getSupplierName(), is("AVIS"));
@@ -120,7 +118,7 @@ public class CarSetTest extends BaseTest {
         carSet.addCarResult(carResult4);
         carSet.addCarResult(carResult5);
 
-        List<CarResult> list = carSet.filterNonCorporateMini();
+        List<CarResult> list = carSet.filterMini(carSet.filterNonCorporate());
 
         assertThat(list.size(), is(1));
         assertThat(list.get(0).getSupplierName(), is("CENTAURO"));
@@ -136,7 +134,7 @@ public class CarSetTest extends BaseTest {
         carSet.addCarResult(carResult4);
         carSet.addCarResult(carResult7);
 
-        List<CarResult> list = carSet.filterNonCorporateEconomy();
+        List<CarResult> list = carSet.filterEconomy(carSet.filterNonCorporate());
 
         assertThat(list.size(), is(1));
         assertThat(list.get(0).getSupplierName(), is("NIZA"));
@@ -152,7 +150,7 @@ public class CarSetTest extends BaseTest {
         carSet.addCarResult(carResult4);
         carSet.addCarResult(carResult9);
 
-        List<CarResult> list = carSet.filterNonCorporateCompact();
+        List<CarResult> list = carSet.filterCompact(carSet.filterNonCorporate());
 
         assertThat(list.size(), is(1));
         assertThat(list.get(0).getSupplierName(), is("GOLDCAR"));
@@ -167,9 +165,9 @@ public class CarSetTest extends BaseTest {
         carSet.addCarResult(carResult3);
         carSet.addCarResult(carResult4);
         carSet.addCarResult(carResult9);
-        carSet.addCarResult(carResult10); // Non Corporate other this should only be return in list,
+        carSet.addCarResult(carResult10);
 
-        List<CarResult> list = carSet.filterNonCorporateOther();
+        List<CarResult> list = carSet.filterOther(carSet.filterNonCorporate());
 
         assertThat(list.size(), is(1));
         assertThat(list.get(0).getSupplierName(), is("GOLDCAR"));
@@ -192,8 +190,8 @@ public class CarSetTest extends BaseTest {
         List<CarResult> list = carSet.filterNonCorporate();
 
         assertThat(list.size(), is(3));
-        assertThat(list.get(0).getSupplierName(), is("CENTAURO"));
-        assertThat(list.get(0).getDescription(), is("Peugeot 107"));
+        assertThat(list.get(0).getSupplierName(), is("NIZA"));
+        assertThat(list.get(0).getDescription(), is("Volkswagen Polo"));
     }
 
     @Test
@@ -204,8 +202,6 @@ public class CarSetTest extends BaseTest {
 
         List<CarResult> carResults = carList.sort();
 
-        System.out.println("Car List Size : " + carList.size());
-
         assertThat(carResults.get(0).getSippCode().startsWith("M"), is(true));
         assertThat(carResults.get(carResults.size() - 1).getSippCode().startsWith("M"), is(false));
         assertThat(carResults.get(carResults.size() - 1).getSippCode().startsWith("C"), is(false));
@@ -215,7 +211,7 @@ public class CarSetTest extends BaseTest {
     }
 
     @Test
-    public void test_CarSet_filterMedionRentalPriceFPFF(){
+    public void test_CarSet_filterMedianRentalPriceFPFF() {
         CarSet carSet = new CarSet();
         carSet.addCarResult(carResult1);
         carSet.addCarResult(carResult2);
@@ -226,16 +222,16 @@ public class CarSetTest extends BaseTest {
 
         List<CarResult> sortedList = carSet.sort();
 
-        Double medionRentalCost = CarResultHelper.calculateMedionRentalCost(sortedList);
+        Double medianRentalCost = CarResultHelper.calculateMedianRentalCost(sortedList);
 
-        List<CarResult> carResultListMFFPFF = CarResultHelper.filterAboveMedionFPFullFull(sortedList);
+        List<CarResult> carResultListMFFPFF = CarResultHelper.filterAboveMedianFPFullFull(sortedList);
 
-        assertThat(carResultListMFFPFF.get(0).getFuelPolicy(), is(CarResult.FuelPolicy.FULLEMPTY));
+        assertThat(carResultListMFFPFF.get(0).getFuelPolicy(), is(CarResult.FuelPolicy.FULLFULL));
         assertThat(carResultListMFFPFF.get(1).getFuelPolicy(), is(CarResult.FuelPolicy.FULLEMPTY));
         assertThat(carResultListMFFPFF.get(2).getFuelPolicy(), is(CarResult.FuelPolicy.FULLEMPTY));
-        assertThat(carResultListMFFPFF.get(0).getRentalCost(), lessThan(medionRentalCost));
-        assertThat(carResultListMFFPFF.get(1).getRentalCost(), lessThan(medionRentalCost));
-        assertThat(carResultListMFFPFF.get(2).getRentalCost(), lessThan(medionRentalCost));
+        assertThat(carResultListMFFPFF.get(0).getRentalCost(), lessThan(medianRentalCost));
+        assertThat(carResultListMFFPFF.get(1).getRentalCost(), lessThan(medianRentalCost));
+        assertThat(carResultListMFFPFF.get(2).getRentalCost(), lessThan(medianRentalCost));
 
     }
 }

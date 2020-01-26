@@ -1,38 +1,36 @@
 package com.j4mt.app.util;
 
-import com.j4mt.app.modal.CarSet;
-import com.j4mt.app.modal.CarResult;
+import com.j4mt.app.model.CarResult;
+import com.j4mt.app.model.CarSet;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class CarResultHelper {
 
-    public static List<CarResult> filterAboveMedionFPFullFull(List<CarResult> list){
+    public static List<CarResult> filterAboveMedianFPFullFull(List<CarResult> list) {
 
-        return  list.stream()
-                .filter(c -> c.getRentalCost() < CarResultHelper.calculateMedionRentalCost(list) &&
-                        c.getFuelPolicy() != CarResult.FuelPolicy.FULLFULL)
+        return list.stream()
+                .filter(c -> c.getFuelPolicy() == CarResult.FuelPolicy.FULLEMPTY ||
+                        c.getRentalCost() < CarResultHelper.calculateMedianRentalCost(list))
                 .collect(Collectors.toList());
     }
 
-    public static Double calculateMedionRentalCost(List<CarResult> carResultList){
-        Double medionRentalCost = 0.0;
-        List<Double> rentalCostList = carResultList.stream().map(CarResult::getRentalCost).collect(Collectors.toList());
+    public static Double calculateMedianRentalCost(List<CarResult> carResultList) {
 
-        Collections.sort(rentalCostList);
+        List<Double> rentalCostList =
+                carResultList.stream()
+                        .map(CarResult::getRentalCost)
+                        .sorted()
+                        .collect(Collectors.toList());
 
-         if(rentalCostList.size() % 2 == 0){
-             medionRentalCost = rentalCostList.get(rentalCostList.size() / 2) + rentalCostList.get(rentalCostList.size() / 2 - 1) / 2;
-         }else{
-             medionRentalCost = rentalCostList.get(rentalCostList.size() / 2);
-         }
-
-        return medionRentalCost;
+        if (rentalCostList.size() % 2 == 0)
+            return rentalCostList.get(rentalCostList.size() / 2) + rentalCostList.get(rentalCostList.size() / 2 - 1) / 2;
+        else
+            return rentalCostList.get(rentalCostList.size() / 2);
     }
 
-    public static void fillCarListData(CarSet carList){
+    public static void fillCarListData(CarSet carList) {
 
         carList.addCarResult(new CarResult("Volkswagen Polo", "NIZA", "EDMR", 12.81d, CarResult.FuelPolicy.FULLEMPTY));
         carList.addCarResult(new CarResult("Ford C-Max Diesel", "NIZA", "CMMD", 22.04d, CarResult.FuelPolicy.FULLEMPTY));
