@@ -14,6 +14,8 @@ Code coverage
     After test has been run : 
         mvn jacoco:report
 
+![](https://github.com/j4mt/carresult/master/.github/workflows/maven.yml/badge.svg)
+
 Description of problem;
 
 1.0 Introduction The idea is to build on a simple Java application that currently lists
