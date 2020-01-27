@@ -5,21 +5,23 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.j4mt</groupId>
-    <artifactId>car.reslut</artifactId>
+    <artifactId>car.result</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
 
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.5.2</version>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>4.12.0</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -29,13 +31,25 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.22.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
         <plugins>
-
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -47,8 +61,15 @@
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.7.7.201606060606</version>
                 <configuration>
+                    <project>
+                        <properties>
+                            <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+                            <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+                        </properties>
+                    </project>
                     <excludes>
-                        <exclude>**/Application*.*</exclude>
+                        <exclude>**/Runner*.*</exclude>
+                        <exclude>**/Display*.*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
@@ -65,6 +86,22 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>libs/</classpathPrefix>
+                            <mainClass>
+                                com.j4mt.app.Runner
+                            </mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
             </plugin>
         </plugins>
     </build>

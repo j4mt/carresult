@@ -1,3 +1,19 @@
+
+
+Running the project tests
+
+    mvn clean package
+        
+Running the jar
+    
+    from project root
+        java -jar target/car.result-1.0-SNAPSHOT.jar
+
+Code coverage
+
+    After test has been run : 
+        mvn jacoco:report
+
 ![](https://github.com/j4mt/carresult/master/.github/workflows/maven.yml/badge.svg)
 
 Description of problem;
@@ -11,7 +27,7 @@ Description of problem;
  
  • Fuel Policy : Indicates if car is supplied full or empty and whether to be returned full or empty.
   
-2.0 Objective Using the supplied code as a starting point, the goal is to extend as follows: 
+2.0 (Done) Objective Using the supplied code as a starting point, the goal is to extend as follows: 
 
 • Remove any duplicates from the list 
 

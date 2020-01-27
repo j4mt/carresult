@@ -1,11 +1,36 @@
 package com.j4mt.app.util;
 
-import com.j4mt.app.modal.CarSet;
-import com.j4mt.app.modal.CarResult;
+import com.j4mt.app.model.CarResult;
+import com.j4mt.app.model.CarSet;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class CarResultHelper {
 
-    public static void fillCarListData(CarSet carList){
+    public static List<CarResult> filterAboveMedianFPFullFull(List<CarResult> list) {
+
+        return list.stream()
+                .filter(c -> c.getFuelPolicy() == CarResult.FuelPolicy.FULLEMPTY ||
+                        c.getRentalCost() < CarResultHelper.calculateMedianRentalCost(list))
+                .collect(Collectors.toList());
+    }
+
+    public static Double calculateMedianRentalCost(List<CarResult> carResultList) {
+
+        List<Double> rentalCostList =
+                carResultList.stream()
+                        .map(CarResult::getRentalCost)
+                        .sorted()
+                        .collect(Collectors.toList());
+
+        if (rentalCostList.size() % 2 == 0)
+            return rentalCostList.get(rentalCostList.size() / 2) + rentalCostList.get(rentalCostList.size() / 2 - 1) / 2;
+        else
+            return rentalCostList.get(rentalCostList.size() / 2);
+    }
+
+    public static void fillCarListData(CarSet carList) {
 
         carList.addCarResult(new CarResult("Volkswagen Polo", "NIZA", "EDMR", 12.81d, CarResult.FuelPolicy.FULLEMPTY));
         carList.addCarResult(new CarResult("Ford C-Max Diesel", "NIZA", "CMMD", 22.04d, CarResult.FuelPolicy.FULLEMPTY));
