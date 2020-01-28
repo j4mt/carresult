@@ -1,4 +1,5 @@
 
+![Java CI](https://github.com/j4mt/carresult/workflows/Java%20CI/badge.svg?branch=master)
 
 Running the project tests
 
@@ -14,7 +15,7 @@ Code coverage
     After test has been run : 
         mvn jacoco:report
 
-![](https://github.com/j4mt/carresult/master/.github/workflows/Java%20CI/badge.svg)
+
 
 Description of problem;
 
