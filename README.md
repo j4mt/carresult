@@ -14,7 +14,7 @@ Code coverage
     After test has been run : 
         mvn jacoco:report
 
-![](https://github.com/j4mt/carresult/master/.github/workflows/maven.yml/badge.svg)
+![](https://github.com/j4mt/carresult/master/.github/workflows/Java%20CI/badge.svg)
 
 Description of problem;
 
