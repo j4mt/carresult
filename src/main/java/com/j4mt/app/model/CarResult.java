@@ -3,17 +3,14 @@ package com.j4mt.app.model;
 import java.util.Objects;
 
 public class CarResult {
+
     private final String description;
     private final String supplierName;
     private final String sippCode;
     private final double rentalCost;
     private final FuelPolicy fuelPolicy;
 
-    public enum FuelPolicy {
-
-        FULLFULL,
-        FULLEMPTY
-    }
+    private final CarType carType;
 
     public CarResult(String description, String supplierName, String sipp, double cost, FuelPolicy fuelPolicy) {
 
@@ -22,6 +19,12 @@ public class CarResult {
         this.sippCode = sipp;
         this.rentalCost = cost;
         this.fuelPolicy = fuelPolicy;
+
+        this.carType = CarType.getCarType(sipp.substring(0, 1).toUpperCase());
+    }
+
+    public CarType getCarType() {
+        return carType;
     }
 
     public String getDescription() {
@@ -49,6 +52,20 @@ public class CarResult {
         return this.fuelPolicy;
     }
 
+    public boolean isFullEmpty() {
+        return fuelPolicy == FuelPolicy.FULLEMPTY;
+    }
+
+    public boolean isCorporate() {
+        return getSupplierName().equals("AVIS")
+                || getSupplierName().equals("BUDGET")
+                || getSupplierName().equals("ENTERPRISE")
+                || getSupplierName().equals("FIREFLY")
+                || getSupplierName().equals("HERTZ")
+                || getSupplierName().equals("SIXT")
+                || getSupplierName().equals("THRIFTY");
+    }
+
     public String toString() {
 
         return this.supplierName + " : " +
@@ -74,31 +91,5 @@ public class CarResult {
     public int hashCode() {
 
         return Objects.hash(description, supplierName, sippCode, fuelPolicy);
-    }
-
-    public boolean isMini() {
-        return getSippCode().startsWith("M");
-    }
-
-    public boolean isEconomy() {
-        return getSippCode().startsWith("E");
-    }
-
-    public boolean isCompact() {
-        return getSippCode().startsWith("C");
-    }
-
-    public boolean isOther() {
-        return !isMini() && !isEconomy() && !isCompact() ;
-    }
-
-    public boolean isCorporate() {
-        return getSupplierName().equals("AVIS")
-                || getSupplierName().equals("BUDGET")
-                || getSupplierName().equals("ENTERPRISE")
-                || getSupplierName().equals("FIREFLY")
-                || getSupplierName().equals("HERTZ")
-                || getSupplierName().equals("SIXT")
-                || getSupplierName().equals("THRIFTY");
     }
 }
