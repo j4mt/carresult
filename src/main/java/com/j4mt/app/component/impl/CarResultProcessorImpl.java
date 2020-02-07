@@ -56,7 +56,7 @@ public class CarResultProcessorImpl implements CarResultProcessor {
         }
     }
 
-    private Double calculateMedianRentalCost(List<CarResult> carResultList) {
+    public Double calculateMedianRentalCost(List<CarResult> carResultList) {
 
         List<Double> rentalCostList =
                 carResultList.stream()
